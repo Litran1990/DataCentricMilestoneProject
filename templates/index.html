@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+
+<!--Menu displaying the info on how to prepare the dish-->
+{% for recipe in recipes %}
+
+
+{% endfor %}
+{% endblock %}
+
+<img src="{{recipe.recipe_image}}"></img>
+{{recipe.recipe_name}} {{recipe.recipe_origin}} {{recipe.recipe_time}} {{recipe.recipe_serving}} {{recipe.recipe_difficulty}} {{recipe.recipe_preparation}}
