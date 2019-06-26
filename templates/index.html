@@ -1,11 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 
-<!--Menu displaying the info on how to prepare the dish-->
-{% for recipe in recipes %}
+
+<div id="opening_banner" class="row">
+    <div class="class col s12">
+        <h1>Find & Create the Most Delicious Recipes For You!</h1>
+        {% if 'username' in session %}
+        <h3>Welcome Back {{ session['username'] }}!</h3>
+        {% else %}
+        <h3>Welcome! Please <a class="links" href="{{ url_for('login') }}">Login</a> or <a class="links" href="{{ url_for('register') }}">Sign Up</a></h3>
+        {% endif %}
+    </div>
+</div>
 
 
-{% endfor %}
+
 {% endblock %}
-
-<img src="{{recipe.recipe_image}}"></img>
-{{recipe.recipe_name}} {{recipe.recipe_origin}} {{recipe.recipe_time}} {{recipe.recipe_serving}} {{recipe.recipe_difficulty}} {{recipe.recipe_preparation}}

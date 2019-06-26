@@ -1,0 +1,57 @@
+/*------------Navbar------------*/
+
+nav {
+    background-color: #404040;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+nav .brand-logo {
+    font-size: 36px;
+}
+
+
+/*------------Index Page------------*/
+
+#opening_banner {
+    background-image: linear-gradient(to bottom right, rgba(76, 76, 76, 0.3), rgba(224, 224, 224, 0.3)), url('../images/index.jpg');
+    border-radius: 10px;
+    font-weight: bold;
+    background-size: cover;
+    height: 35vh;
+    padding-top: 63px;
+}
+
+.links {
+    color: #404040;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 32px;
+    color: #FFFFFF;
+    font-weight: 900;
+    text-align: center;
+}
+
+h3 {
+    font-size: 24px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+/*------------Index Page------------*/
+
+p {
+    font-size: 32px;
+    color: #404040;
+    font-weight: 900;
+    text-align: center;
+}
+
+.btn, .btn-large {
+    text-decoration: none;
+    color: #fff;
+    background-color: #404040;
+}

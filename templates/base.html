@@ -10,6 +10,9 @@
 
     <!--Materialize 0.100.2-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!--Custom css-->
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -20,14 +23,18 @@
                 <a href="{{url_for('index')}}" class="brand-logo">Oui Chef!</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{url_for('index')}}">Home</a></li>
-                    <li><a href="sass.html">Sign In</a></li>
-                    <li><a href="badges.html"><i class="material-icons">account_circle</i></a></li>
-                    <li><i class=""></i></li>
+                    {% if 'username' in session %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    
+                    {% else %}
+                    <li><a href="">Sign In</a></li>
+                    <li><a href="{{url_for('register')}}">Sign Up</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
-    
+
     {% block content %} {% endblock %}
 
     <!--JQuery-->
