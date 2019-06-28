@@ -27,7 +27,7 @@
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     
                     {% else %}
-                    <li><a href="">Sign In</a></li>
+                    <li><a href="{{url_for('login')}}">Sign In</a></li>
                     <li><a href="{{url_for('register')}}">Sign Up</a></li>
                     {% endif %}
                 </ul>
@@ -43,12 +43,13 @@
     <!--Materialise JavaScript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-    <!--Firing JQueryt-->
-    <script type="text/javascript" src="
+    <!--Firing JQuery-->
+    <script type="text/javascript">
         $(document).ready(function(){
             $('.collapsible').collapsible();
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
         });
-    "></script>
+    </script>
 </body>
 
 </html>

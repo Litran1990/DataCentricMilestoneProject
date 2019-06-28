@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route('/index')
 def index():
     
-    recipes = mongo.db.recipes.find().sort('name', -1).limit(6)
+    recipes = mongo.db.recipes.find().sort('recipe_name', -1).limit(6)
     
     return render_template("index.html")
     
@@ -34,11 +34,10 @@ def register():
         current_user = users.find_one({'username': request.form['username']})
         
         if current_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
             users.insert({'username' : request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
-        
         flash('Oops, that username already exists! Please choose another one.')
             
     return render_template('register.html')
@@ -47,14 +46,39 @@ def register():
 """User Login Form"""
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    return render_template('index.html')
+    if request.method == 'POST':
+        users = mongo.db.users
+        logged_user = users.find_one({'username': request.form['username']})
+        
+        if logged_user:
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), logged_user['password'].encode('utf-8')) == logged_user['password'].encode('utf-8'):
+                session['username'] = request.form['username']
+                return redirect(url_for('index'))
+            flash('Username Does Not Exist!')
+    
+    return render_template('login.html')
     
 
-"""User Logout"""  
+"""User Logout Form"""  
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+
+"""Visualize A Single Recipe"""
+@app.route('/view_recipe/<recipe_id>')
+def view_recipe(recipe_id):
+    # Here we also increment the view count by one each time an user visualizes the recipe
+    view_count = mongo.db.recipes
+    view_count.find_one_and_update(
+        {'_id': ObjectId(recipe_id)},
+        {'$inc': {'recipe_views': int(1)}}
+        )
+    the_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})     
+    return render_template('view_recipe.html', recipe=the_recipe)
+
+
     
 """Set up our IP address and our port number so that Cloud9 knows how to run and where to run our application""" 
 if __name__ == '__main__':

@@ -11,7 +11,15 @@
         {% endif %}
     </div>
 </div>
-
-
+{% for recipe in recipes %}
+<div class="row">
+    <div class="carousel carousel-slider">
+        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
+        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
+        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
+        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}
