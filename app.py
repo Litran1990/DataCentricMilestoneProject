@@ -101,7 +101,7 @@ def update_user():
 
 #=======================================================================#
 
-def add_liked_disliked(recipe_id, choice):
+def add_like_dislike(recipe_id, choice):
 
         """
             Updates the user profile once a recipe is liked
@@ -116,6 +116,25 @@ def add_liked_disliked(recipe_id, choice):
             db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.dislikes": 1}})
 
         # once the action is done, we update the user profile
+        User.update_user()
+        
+#=======================================================================#
+
+def remove_like_dislike(recipe_id, choice):
+
+        """
+            Updates the user profile once a recipe is disliked
+            Also updates the recipes number of dislikes
+        """
+
+        if choice == 'like':
+            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$pull": {"likes": recipe_id}})
+            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.likes": -1}})
+        else:
+            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$pull": {"dislikes": recipe_id}})
+            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.dislikes": -1}})
+
+        # update user
         User.update_user()
         
 #=======================================================================#

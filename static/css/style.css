@@ -36,7 +36,7 @@ nav .brand-logo {
 }
 
 #carousel_container {
-    background-color: #404040; 
+    background-color: #404040;
 }
 
 .carousel.carousel-slider .carousel-item {
@@ -79,8 +79,37 @@ h3 {
 
 /*------------Recipe Page------------*/
 
+#recipe_prep {
+    padding-right: 11.25px;
+    padding-left: 11.25px;
+}
+
+.row {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    height: 80vh;
+}
+
+.card .card-image img {
+    height: 460px;
+    width: 440px;
+    border-radius: 2.5%;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.card .card-image .card-title {
+    padding-left: 145px;
+}
+
 .comment_section {
     color: #404040;
+    margin: 0px;
 }
 
 p {

@@ -6,40 +6,50 @@
   <!---Recipe Cards--->
   <div class="col s6 m6">
     <div class="card">
-      <div class="card-image">
+      <div class="center card-image">
         <img src="{{recipe.recipe_image}}"></img>
         <span class="card-title">{{recipe.recipe_name}}</span>
       </div>
       <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+        <p>{{recipe.recipe_description}}</p>
       </div>
       <div class="card-action">
         <a href="#">Views {{recipe.recipe_views}}</a>
         <a href="">Likes {{recipe.recipe_likes}}</a>
-        <a href="#">Dislikes {{recipe.recipe_dislikes}}</a> {% for preparation in recipe.recipe_preparation %} {{ comments }} {% endfor %}
+        <a href="#">Dislikes {{recipe.recipe_dislikes}}</a>
       </div>
     </div>
   </div>
+
   <!---Recipe Comments--->
   <div class="col s6 m6">
     <div class="card">
+      <h3 class="comment_section">Comments</h3>
+      {% if recipe.recipe_comments %}
+
       <!---Display Comments--->
+      {% for comment in recipe.recipe_comments %}
       <div class="card-content">
-        {% for comment in recipe.recipe_comments %}
-        <h3 class="comment_section">Comments</h3>
         <p>
           {{ comment }}
         </p>
-        {% endfor %}
       </div>
+      {% endfor %} {% else %}
+      <!---If There Are No Comments--->
+      <div class="card-content">
+        <p>No comments yet.</p>
+      </div>
+      {% endif%}
+
       <!---Write a Comment--->
       <div class="card-content">
         <div class="row">
           <form class="col s12">
             <div class="row">
               <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea">Leave a comment...</textarea>
+                <textarea id="textarea1" class="materialize-textarea"></textarea>
                 <label for="textarea1">Leave a comment...</label>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Send</button>
               </div>
             </div>
           </form>
@@ -48,24 +58,34 @@
     </div>
   </div>
 </div>
-<ul class="collapsible" data-collapsible="accordion">
-  <li>
-    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Preparation</div>
-    <!--Nested for loop in order to display all preparation steps in the database array-->
-    {% for preparation in recipe.recipe_preparation %}
-    <div class="collapsible-body"><span>
+
+<!---Recipe Preparation & Ingredients--->
+<div id="recipe_prep" class="row">
+  <div class="col s12 m12">
+    <ul class="collapsible" data-collapsible="accordion">
+
+      <!---Preparation--->
+      <li>
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Preparation</div>
+        <!--Nested for loop in order to display all preparation steps in the database array-->
+        {% for preparation in recipe.recipe_preparation %}
+        <div class="collapsible-body"><span>
         {{ preparation  }}
         </span></div>
-    {% endfor %}
-  </li>
-  <li>
-    <div class="collapsible-header"><i class="material-icons">place</i>Ingredients</div>
-    <!--Nested for loop in order to display all ingredientes in the database array-->
-    {% for ingredient in recipe.recipe_ingredients %}
-    <div class="collapsible-body"><span>
+        {% endfor %}
+      </li>
+
+      <!---Ingredients--->
+      <li>
+        <div class="collapsible-header"><i class="material-icons">place</i>Ingredients</div>
+        <!--Nested for loop in order to display all ingredientes in the database array-->
+        {% for ingredient in recipe.recipe_ingredients %}
+        <div class="collapsible-body"><span>
         {{ ingredient  }}
         </span></div>
-    {% endfor %}
-  </li>
-</ul>
-{% endblock %}
+        {% endfor %}
+      </li>
+    </ul>
+    {% endblock %}
+  </div>
+</div>
