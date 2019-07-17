@@ -11,15 +11,24 @@
         {% endif %}
     </div>
 </div>
-{% for recipe in recipes %}
-<div class="row">
-    <div class="carousel carousel-slider">
-        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
-        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
-        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
-        <a class="carousel-item" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}"><img src="{{ recipe.recipe_image }}"><h4>{{ recipe.recipe_name }}</h4></a>
+<div id="recipe_carousel" class="row">
+    <div class="class col s12">
+        <div class="carousel carousel-slider center">
+            {% for recipe in recipes %}
+            <div class="row">
+                <div id="carousel_container" class="carousel-item white-text">
+                    <div class="class col s6">
+                        <img id="carousel_image" src="{{ recipe.recipe_image }}">
+                    </div>
+                    <div class="class col s6">
+                        <h2>{{ recipe.recipe_name }}</h2>
+                        <p class="white-text">{{ recipe.recipe_description }}</p>
+                        <a class="btn waves-effect white grey-text darken-text-2" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-{% endfor %}
-
 {% endblock %}

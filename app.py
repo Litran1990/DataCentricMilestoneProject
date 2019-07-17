@@ -23,12 +23,15 @@ def index():
     
     recipes = mongo.db.recipes.find().sort('recipe_name', -1).limit(6)
     
-    return render_template("index.html")
-    
+    return render_template("index.html", recipes=recipes)
 
-"""User Sign Up Form"""
+#=======================================================================#    
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    
+    """User Sign Up Form"""
+    
     if request.method == 'POST':
         users = mongo.db.users
         current_user = users.find_one({'username': request.form['username']})
@@ -41,11 +44,14 @@ def register():
         flash('Oops, that username already exists! Please choose another one.')
             
     return render_template('register.html')
-    
 
-"""User Login Form"""
+#=======================================================================#    
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    
+    """User Login Form"""
+    
     if request.method == 'POST':
         users = mongo.db.users
         logged_user = users.find_one({'username': request.form['username']})
@@ -57,31 +63,67 @@ def login():
             flash('Username Does Not Exist!')
     
     return render_template('login.html')
-    
 
-"""User Logout Form"""  
+#=======================================================================#    
+
 @app.route('/logout')
 def logout():
+    
+    """User Logout Form""" 
+    
     session.clear()
     return redirect(url_for('index'))
 
+#=======================================================================#
 
-"""Visualize A Single Recipe"""
 @app.route('/view_recipe/<recipe_id>')
 def view_recipe(recipe_id):
+    
+    """Visualize A Single Recipe"""
+    
     # Here we also increment the view count by one each time an user visualizes the recipe
     view_count = mongo.db.recipes
     view_count.find_one_and_update(
         {'_id': ObjectId(recipe_id)},
-        {'$inc': {'recipe_views': int(1)}}
+        {'$inc': {'recipe_views':1}}
         )
     the_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})     
     return render_template('view_recipe.html', recipe=the_recipe)
 
+#=======================================================================#
 
+def update_user():
+
+    """When the user profile cahnges due to a like, dislike, or comment made, we execute an update"""
+
+    user = db.users.find_one({"_id": current_user.user['_id']})
+    current_user.user = user
+
+#=======================================================================#
+
+def add_liked_disliked(recipe_id, choice):
+
+        """
+            Updates the user profile once a recipe is liked
+            Also updates the recipes number of likes
+        """
+
+        if choice == 'like':
+            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$push": {"likes": recipe_id}})
+            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.likes": 1}})
+        else:
+            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$push": {"dislikes": recipe_id}})
+            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.dislikes": 1}})
+
+        # once the action is done, we update the user profile
+        User.update_user()
+        
+#=======================================================================#
     
-"""Set up our IP address and our port number so that Cloud9 knows how to run and where to run our application""" 
 if __name__ == '__main__':
+    
+    """Set up our IP address and our port number so that Cloud9 knows how to run and where to run our application"""
+    
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)

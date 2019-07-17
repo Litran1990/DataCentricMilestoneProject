@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     <!--Custom css-->
-    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                     <li><a href="{{url_for('index')}}">Home</a></li>
                     {% if 'username' in session %}
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                    
+
                     {% else %}
                     <li><a href="{{url_for('login')}}">Sign In</a></li>
                     <li><a href="{{url_for('register')}}">Sign Up</a></li>
@@ -45,9 +45,14 @@
 
     <!--Firing JQuery-->
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('.collapsible').collapsible();
-            $('.carousel.carousel-slider').carousel({fullWidth: true});
+            $('.carousel.carousel-slider').carousel({
+                fullWidth: true,
+                indicators: true
+            });
+            $('#textarea1').val('New Text');
+            M.textareaAutoResize($('#textarea1'));
         });
     </script>
 </body>

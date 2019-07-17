@@ -19,12 +19,38 @@ nav .brand-logo {
     font-weight: bold;
     background-size: cover;
     height: 35vh;
+    margin-left: 40px;
+    margin-top: 25px;
+    margin-right: 40px;
     padding-top: 63px;
+}
+
+#recipe_carousel {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#carousel_image {
+    width: 400px;
+    height: 350px;
+}
+
+#carousel_container {
+    background-color: #404040; 
+}
+
+.carousel.carousel-slider .carousel-item {
+    width: 100%;
+    border-radius: 10px;
 }
 
 .links {
     color: #404040;
     font-weight: bold;
+}
+
+.row .col.s12 {
+    padding: 0;
 }
 
 h1 {
@@ -43,15 +69,23 @@ h3 {
 
 /*------------Index Page------------*/
 
-p {
-    font-size: 32px;
-    color: #404040;
-    font-weight: 900;
-    text-align: center;
-}
-
-.btn, .btn-large {
+.btn,
+.btn-large {
     text-decoration: none;
     color: #fff;
     background-color: #404040;
+}
+
+
+/*------------Recipe Page------------*/
+
+.comment_section {
+    color: #404040;
+}
+
+p {
+    font-size: 24;
+    color: #404040;
+    font-weight: 900;
+    text-align: center;
 }
