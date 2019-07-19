@@ -57,10 +57,12 @@ def login():
         logged_user = users.find_one({'username': request.form['username']})
         
         if logged_user:
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), logged_user['password'].encode('utf-8')) == logged_user['password'].encode('utf-8'):
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), logged_user['password'].encode('utf-8')) == logged_user['password']:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
-            flash('Username Does Not Exist!')
+        elif request.form['username'] != logged_user:
+            flash('User Does Not Exist!')
+        flash('Incorrect Password!')
     
     return render_template('login.html')
 
@@ -92,51 +94,17 @@ def view_recipe(recipe_id):
 
 #=======================================================================#
 
-def update_user():
+@app.route('/view_recipe/<recipe_id>', methods=['POST'])
+def add_comment(recipe_id):
 
-    """When the user profile cahnges due to a like, dislike, or comment made, we execute an update"""
-
-    user = db.users.find_one({"_id": current_user.user['_id']})
-    current_user.user = user
-
-#=======================================================================#
-
-def add_like_dislike(recipe_id, choice):
-
-        """
-            Updates the user profile once a recipe is liked
-            Also updates the recipes number of likes
-        """
-
-        if choice == 'like':
-            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$push": {"likes": recipe_id}})
-            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.likes": 1}})
-        else:
-            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$push": {"dislikes": recipe_id}})
-            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.dislikes": 1}})
-
-        # once the action is done, we update the user profile
-        User.update_user()
-        
-#=======================================================================#
-
-def remove_like_dislike(recipe_id, choice):
-
-        """
-            Updates the user profile once a recipe is disliked
-            Also updates the recipes number of dislikes
-        """
-
-        if choice == 'like':
-            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$pull": {"likes": recipe_id}})
-            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.likes": -1}})
-        else:
-            db.users.find_one_and_update({"_id": current_user.user['_id']}, {"$pull": {"dislikes": recipe_id}})
-            db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$inc": {"users.dislikes": -1}})
-
-        # update user
-        User.update_user()
-        
+    """Adds comments to the recipe and the user profile"""
+    
+    comment = { request.form['comment'] }
+    
+    mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$push": {'comments': comment}})
+    mongo.db.users.find_one_and_update({"_id": ObjectId(user_id)}, {"$push": {'comments': comment}})
+    return redirect(url_for('view_recipe'))
+    
 #=======================================================================#
     
 if __name__ == '__main__':

@@ -7,9 +7,19 @@
         <div class="input-field col s12">
           <p>Sign In to Oui Chef!</p>
         </div>
+
+        <title>My Application</title>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class=flashes>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %} {% block body %}{% endblock %}
+
         <div class="input-field col s12">
           <input id="username" name="username" type="text" class="validate" minlength="6">
-          <label for="first_name">Username</label>
+          <label for="username">Username</label>
         </div>
         <div class="input-field col s12">
           <input id="password" name="pass" type="password" class="validate">
