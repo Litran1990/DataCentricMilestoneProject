@@ -93,6 +93,7 @@ h3 {
 
 .card {
     height: 80vh;
+    display: block;
 }
 
 .card .card-action {
@@ -120,11 +121,3 @@ h3 {
     color: #404040;
     margin: 0px;
 }
-
-/*p {
-    font-size: 24;
-    color: #404040;
-    font-weight: 900;
-    text-align: center;
-}
-*/

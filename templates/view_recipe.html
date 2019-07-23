@@ -72,14 +72,12 @@
       {% else %}
       <div class="card-content">
         <div class="row">
-          <form action="/view_recipe/<recipe_id>" method="post" class="col s12">
+          <form action="{{ url_for('add_comment', recipe_id=recipe._id) }}" method="post" class="col s12">
             <div class="row">
               <div class="input-field col s12">
                 <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
                 <label for="textarea1">Leave a comment...</label>
-                <a id="add_comment" href="{{ url_for('add_comment', recipe_id=recipe._id) }}" type="submit" name="action">
-                  Send
-                </a>
+                <button type="submit">Send</button>
               </div>
             </div>
           </form>
