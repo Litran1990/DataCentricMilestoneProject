@@ -89,21 +89,47 @@ def view_recipe(recipe_id):
         {'_id': ObjectId(recipe_id)},
         {'$inc': {'recipe_views':1}}
         )
+    
     the_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})     
     return render_template('view_recipe.html', recipe=the_recipe)
 
 #=======================================================================#
 
-@app.route('/view_recipe/<recipe_id>', methods=['POST'])
+@app.route('/add_comment/<recipe_id>', methods=['POST'])
 def add_comment(recipe_id):
 
     """Adds comments to the recipe and the user profile"""
     
-    comment = { request.form['comment'] }
+    comment = request.form['comment']
     
-    mongo.db.recipes.find_one_and_update({"_id": ObjectId(recipe_id)}, {"$push": {'comments': comment}})
-    mongo.db.users.find_one_and_update({"_id": ObjectId(user_id)}, {"$push": {'comments': comment}})
-    return redirect(url_for('view_recipe'))
+    mongo.db.recipes.find_one_and_update(
+        {'_id': ObjectId(recipe_id)},
+        {'$push': {'recipe_comments': comment}})
+    return redirect(url_for('view_recipe', recipe_id=recipe_id))
+    
+#=======================================================================#
+
+@app.route('/add_like/<recipe_id>')
+def add_like(recipe_id):
+    
+    """Add a like to the recipe"""
+    
+    mongo.db.recipes.find_one_and_update(
+        {'_id': ObjectId(recipe_id)},
+        {'$inc': {'recipe_likes': 1}})
+    return redirect(url_for('view_recipe', recipe_id=recipe_id))
+    
+#=======================================================================#
+
+@app.route('/add_dislike/<recipe_id>')
+def add_dislike(recipe_id):
+    
+    """Add a dislike to the recipe"""
+    
+    mongo.db.recipes.find_one_and_update(
+        {'_id': ObjectId(recipe_id)},
+        {'$inc': {'recipe_dislikes': 1}})
+    return redirect(url_for('view_recipe', recipe_id=recipe_id))
     
 #=======================================================================#
     

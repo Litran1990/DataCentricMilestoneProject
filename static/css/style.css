@@ -95,6 +95,15 @@ h3 {
     height: 80vh;
 }
 
+.card .card-action {
+    text-align: center;
+}
+
+.card .card-content p {
+    text-align: center;
+    
+}
+
 .card .card-image img {
     height: 460px;
     width: 440px;
@@ -112,9 +121,10 @@ h3 {
     margin: 0px;
 }
 
-p {
+/*p {
     font-size: 24;
     color: #404040;
     font-weight: 900;
     text-align: center;
 }
+*/

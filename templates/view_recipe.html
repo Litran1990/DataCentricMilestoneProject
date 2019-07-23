@@ -13,11 +13,25 @@
       <div class="card-content">
         <p>{{recipe.recipe_description}}</p>
       </div>
+      
+      <!-- REQUIRE SIGN IN TO LIKE/DISLIKE -->
+      {% if not 'username' in session %}
       <div class="card-action">
         <a href="#">Views {{recipe.recipe_views}}</a>
-        <a href="">Likes</a>
+        <a href="#">Likes {{recipe.recipe_likes}}</a>
         <a href="#">Dislikes {{recipe.recipe_dislikes}}</a>
       </div>
+      <div class="card-action">
+        <p>You must be logged in to like/dislike a recipe.<a href="{{ url_for('login') }}"> Sign In </a></p>
+      </div>
+      
+      {% else %}
+      <div class="card-action">
+        <a href="#">Views {{recipe.recipe_views}}</a>
+        <a id="add_like" href="{{ url_for('add_like', recipe_id=recipe._id) }}">Likes {{recipe.recipe_likes}}</a>
+        <a id="add_dislike" href="{{ url_for('add_dislike', recipe_id=recipe._id) }}">Dislikes {{recipe.recipe_dislikes}}</a>
+      </div>
+      {% endif %}
     </div>
   </div>
 
@@ -63,7 +77,9 @@
               <div class="input-field col s12">
                 <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
                 <label for="textarea1">Leave a comment...</label>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Send</button>
+                <a id="add_comment" href="{{ url_for('add_comment', recipe_id=recipe._id) }}" type="submit" name="action">
+                  Send
+                </a>
               </div>
             </div>
           </form>
