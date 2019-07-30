@@ -101,10 +101,14 @@ def add_comment(recipe_id):
     """Adds comments to the recipe and the user profile"""
     
     comment = request.form['comment']
+    user = session['username']
     
     mongo.db.recipes.find_one_and_update(
         {'_id': ObjectId(recipe_id)},
         {'$push': {'recipe_comments': comment}})
+    mongo.db.recipes.find_one_and_update(
+        {'_id': ObjectId(recipe_id)},
+        {'$push': {'recipe_users': user}})
     return redirect(url_for('view_recipe', recipe_id=recipe_id))
     
 #=======================================================================#

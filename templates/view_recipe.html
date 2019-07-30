@@ -42,13 +42,23 @@
       {% if recipe.recipe_comments %}
 
       <!---Display Comments--->
-      {% for comment in recipe.recipe_comments %}
-      <div class="card-content">
-        <p>
-          {{ comment }}
-        </p>
+      <div class="row"></div>
+        <div class="card-content col s3 m3">
+        {% for user in recipe.recipe_users[:5] %}
+          <p>
+            {{ user }}
+          </p>
+        {% endfor %} 
+        </div>
+        <div class="card-content col s9 m9">
+        {% for comment in recipe.recipe_comments[:5] %}
+          <p>
+            {{ comment }}
+          </p>
+        {% endfor %}
+        </div>
       </div>
-      {% endfor %} {% else %}
+      {% else %}
       <!---If There Are No Comments--->
       <div class="card-content">
         <p>No comments yet.</p>
