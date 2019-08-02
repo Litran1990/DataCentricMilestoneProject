@@ -21,9 +21,11 @@ mongo = PyMongo(app)
 @app.route('/index')
 def index():
     
-    recipes = mongo.db.recipes.find().sort('recipe_name', -1).limit(6)
+    recipes = mongo.db.recipes.find().sort('recipe_name', -1)
     
-    return render_template("index.html", recipes=recipes)
+    cards = mongo.db.recipes.find().sort('recipe_likes', -1)
+    
+    return render_template("index.html", recipes=recipes, cards=cards)
 
 #=======================================================================#    
 

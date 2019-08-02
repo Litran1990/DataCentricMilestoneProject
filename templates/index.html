@@ -36,22 +36,22 @@
 
 <!---Additional Suggestions/Recipes--->
 <div class="row">
-    {% for recipe in recipes %}    
+    {% for card in cards[:2] %}    
     <div class="col s12 m6">
         <div class="card">
             <div class="card-image">
-                <img src="{{ recipe.recipe_picture }}">
-                <span class="card-title">{{recipe.recipe_name}}</span>
+                <img src="{{ card.recipe_image }}">
+                <span class="card-title">{{card.recipe_name}}</span>
             </div>
             <div class="card-content">
-                <p>{{recipe.recipe_description}}</p>
+                <p>{{card.recipe_description}}</p>
             </div>
             <div class="card-action">
-                <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">View Recipe</a>
+                <a href="{{ url_for('view_recipe', recipe_id=card._id) }}">View Recipe</a>
             </div>
         </div>
     </div>
-    {% endfor %} 
+{% endfor %} 
 </div>
 
 
