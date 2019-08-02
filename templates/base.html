@@ -2,11 +2,8 @@
 <html>
 
 <head>
-    <!--Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css" />
 
     <!--Materialize 0.100.2-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -35,7 +32,28 @@
         </nav>
     </header>
 
-    {% block content %} {% endblock %}
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+
+    <footer id="page-footer">
+        <div class="row">
+            <div id="footer-logo" class="col l4 m4 s4">
+                <p>Oui Chef!</p>
+            </div>
+            <div id="footer-copyright" class="col l4 m4 s4">
+                <p>© 2019 Oui Chef!</p>
+            </div>
+            <div class="col l4 m4 s4">
+                <ul id="footer-list">
+                    <li class="footer-icon"><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/felipe-spoliante-litran/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="footer-icon"><a class="grey-text text-lighten-3" href="mailto:felipelitran@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                    <li class="footer-icon"><a class="grey-text text-lighten-3" href="https://github.com/Litran1990" target="_blank"><i class="fa fa-github"></i></a></li>
+                    <li class="footer-icon"><a class="grey-text text-lighten-3" href="https://twitter.com/FelipeLitran" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
     <!--JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

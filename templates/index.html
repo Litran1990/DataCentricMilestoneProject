@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-
+<!---Welcome Banner--->
 <div id="opening_banner" class="row">
     <div class="class col s12">
         <h1>Find & Create the Most Delicious Recipes For You!</h1>
@@ -11,10 +11,12 @@
         {% endif %}
     </div>
 </div>
+
+<!---Carousel Opening Recipes--->
 <div id="recipe_carousel" class="row">
     <div class="class col s12">
         <div class="carousel carousel-slider center">
-            {% for recipe in recipes %}
+            {% for recipe in recipes[:5] %}
             <div class="row">
                 <div id="carousel_container" class="carousel-item white-text">
                     <div class="class col s6">
@@ -31,4 +33,26 @@
         </div>
     </div>
 </div>
+
+<!---Additional Suggestions/Recipes--->
+<div class="row">
+    {% for recipe in recipes %}    
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ recipe.recipe_picture }}">
+                <span class="card-title">{{recipe.recipe_name}}</span>
+            </div>
+            <div class="card-content">
+                <p>{{recipe.recipe_description}}</p>
+            </div>
+            <div class="card-action">
+                <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">View Recipe</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %} 
+</div>
+
+
 {% endblock %}

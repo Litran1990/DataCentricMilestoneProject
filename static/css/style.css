@@ -2,8 +2,8 @@
 
 nav {
     background-color: #404040;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 nav .brand-logo {
@@ -84,6 +84,10 @@ h3 {
     padding-left: 11.25px;
 }
 
+#leave_comment {
+    margin-top: 50%;
+}
+
 .row {
     margin-left: 20px;
     margin-right: 20px;
@@ -102,7 +106,7 @@ h3 {
 
 .card .card-content p {
     text-align: center;
-    
+
 }
 
 .card .card-image img {
@@ -120,4 +124,48 @@ h3 {
 .comment_section {
     color: #404040;
     margin: 0px;
+}
+
+
+/*------------Footer------------*/
+
+#page-footer {
+    background-color: #404040;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin: 0px;
+}
+
+#page-footer .row {
+    margin: 0px;
+}
+
+#footer-logo p {
+    font-size: 28px;
+    color: #fff;
+    margin: 0;
+}
+
+#footer-copyright p {
+    font-size: 16px;
+    font-weight: 200;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+    padding-top: 5px;
+}
+
+#footer-list {
+    display: flex;
+    margin: 0px;
+    float: right;
+}
+
+.footer-icon {
+    padding-left: 15px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
 }

@@ -13,7 +13,7 @@
       <div class="card-content">
         <p>{{recipe.recipe_description}}</p>
       </div>
-      
+
       <!-- REQUIRE SIGN IN TO LIKE/DISLIKE -->
       {% if not 'username' in session %}
       <div class="card-action">
@@ -24,7 +24,7 @@
       <div class="card-action">
         <p>You must be logged in to like/dislike a recipe.<a href="{{ url_for('login') }}"> Sign In </a></p>
       </div>
-      
+
       {% else %}
       <div class="card-action">
         <a href="#">Views {{recipe.recipe_views}}</a>
@@ -43,21 +43,22 @@
 
       <!---Display Comments--->
       <div class="row"></div>
-        <div class="card-content col s3 m3">
+      <div class="card-content col s3 m3">
         {% for user in recipe.recipe_users[:5] %}
-          <p>
-            {{ user }}
-          </p>
-        {% endfor %} 
-        </div>
-        <div class="card-content col s9 m9">
-        {% for comment in recipe.recipe_comments[:5] %}
-          <p>
-            {{ comment }}
-          </p>
+        <p>
+          {{ user }}
+        </p>
         {% endfor %}
-        </div>
       </div>
+      <div class="card-content col s9 m9">
+        {% for comment in recipe.recipe_comments[:5] %}
+        <p>
+          {{ comment }}
+        </p>
+        {% endfor %}
+      </div>
+
+
       {% else %}
       <!---If There Are No Comments--->
       <div class="card-content">
@@ -69,7 +70,7 @@
 
       <!-- REQUIRE SIGN IN TO POST A COMMENT -->
       {% if not 'username' in session %}
-      <div class="card-content">
+      <div id="leave_comment" class="card-content">
         <div class="row">
           <form class="col s12">
             <div class="row">
@@ -80,7 +81,7 @@
       </div>
 
       {% else %}
-      <div class="card-content">
+      <div id="leave_comment" class="card-content">
         <div class="row">
           <form action="{{ url_for('add_comment', recipe_id=recipe._id) }}" method="post" class="col s12">
             <div class="row">
@@ -105,7 +106,7 @@
 
       <!---Preparation--->
       <li>
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Preparation</div>
+        <div class="collapsible-header"><i class="material-icons"></i>Preparation</div>
         <!--Nested for loop in order to display all preparation steps in the database array-->
         {% for preparation in recipe.recipe_preparation %}
         <div class="collapsible-body"><span>
@@ -116,7 +117,7 @@
 
       <!---Ingredients--->
       <li>
-        <div class="collapsible-header"><i class="material-icons">place</i>Ingredients</div>
+        <div class="collapsible-header"><i class="material-icons"></i>Ingredients</div>
         <!--Nested for loop in order to display all ingredientes in the database array-->
         {% for ingredient in recipe.recipe_ingredients %}
         <div class="collapsible-body"><span>
@@ -125,6 +126,7 @@
         {% endfor %}
       </li>
     </ul>
-    {% endblock %}
   </div>
 </div>
+
+{% endblock %}
