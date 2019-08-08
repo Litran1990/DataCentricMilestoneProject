@@ -36,8 +36,8 @@
 
 <!---Additional Suggestions/Recipes--->
 <div class="row">
-    {% for card in cards[:2] %}    
-    <div class="col s12 m6">
+    {% for card in cards[:4] %}
+    <div class="col s6 m4">
         <div class="card">
             <div class="card-image">
                 <img src="{{ card.recipe_image }}">
@@ -47,11 +47,14 @@
                 <p>{{card.recipe_description}}</p>
             </div>
             <div class="card-action">
+                <a href="#">Views {{card.recipe_views}}</a>
+                <a href="#">Likes {{card.recipe_likes}}</a>
+                <a href="#">Dislikes {{card.recipe_dislikes}}</a>
                 <a href="{{ url_for('view_recipe', recipe_id=card._id) }}">View Recipe</a>
             </div>
         </div>
     </div>
-{% endfor %} 
+    {% endfor %}
 </div>
 
 

@@ -1,0 +1,122 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row">
+    <form action="{{ url_for('submit_recipe') }}" method="POST" class="col s12">
+        <!--Recipe Title-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <input id="name" name="recipe_name" type="text" class="validate">
+                <label for="icon_prefix">Recipe Title</label>
+            </div>
+        </div>
+        <!--Recipe Origin-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-globe-americas"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="origins" name="recipe_origin">
+                  <option value="" disabled selected>Country of Origin</option>
+                  {% for origin in origins %}
+                  <option value="{{origin.recipe_origin}}">{{origin.recipe_origin}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Preparation Time-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="time" name="recipe_time">
+                  <option value="" disabled selected>Preparation Time</option>
+                  {% for t in time %}
+                  <option value="{{t.recipe_time}}">{{t.recipe_time}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Recipe Serving-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-user-friends"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="serving" name="recipe_serving">
+                  <option value="" disabled selected>No. of Servings</option>
+                  {% for s in serving %}
+                  <option value="{{s.recipe_serving}}">{{s.recipe_serving}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Recipe Difficulty-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-medal"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="difficulty" name="recipe_difficulty">
+                  <option value="" disabled selected>Difficulty</option>
+                  {% for d in difficulty %}
+                  <option value="{{d.recipe_difficulty}}">{{d.recipe_difficulty}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Recipe Description-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <input id="decription" name="recipe_description" type="text" class="validate">
+                <label for="icon_prefix">Recipe Description</label>
+            </div>
+        </div>
+        <!--Recipe Image-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-image"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <input id="image" name="recipe_image" type="text" class="validate">
+                <label for="icon_prefix">Recipe Image (URL)</label>
+            </div>
+        </div>
+        <!--Recipe Ingredients-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-cheese"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <input id="ingredients" name="recipe_ingredients" type="text" class="validate">
+                <label for="icon_prefix">Recipe Ingredients</label>
+            </div>
+        </div>
+        <!--Recipe Preparation-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <input id="preparation" name="recipe_preparation" type="text" class="validate">
+                <label for="icon_prefix">Recipe Preparation</label>
+            </div>
+        </div>
+        <!--Submit Recipe-->
+
+        <div class="row">
+            <a class="btn waves-effect waves-light" href="{{url_for('index')}}">Back</a>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Create
+                <i class="material-icons right"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

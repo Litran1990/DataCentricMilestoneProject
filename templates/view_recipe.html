@@ -107,23 +107,17 @@
       <!---Preparation--->
       <li>
         <div class="collapsible-header"><i class="material-icons"></i>Preparation</div>
-        <!--Nested for loop in order to display all preparation steps in the database array-->
-        {% for preparation in recipe.recipe_preparation %}
         <div class="collapsible-body"><span>
-        {{ preparation  }}
+        {{recipe.recipe_preparation}}
         </span></div>
-        {% endfor %}
       </li>
 
       <!---Ingredients--->
       <li>
         <div class="collapsible-header"><i class="material-icons"></i>Ingredients</div>
-        <!--Nested for loop in order to display all ingredientes in the database array-->
-        {% for ingredient in recipe.recipe_ingredients %}
         <div class="collapsible-body"><span>
-        {{ ingredient  }}
+        {{recipe.recipe_ingredients}}
         </span></div>
-        {% endfor %}
       </li>
     </ul>
   </div>

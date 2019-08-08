@@ -127,6 +127,27 @@ h3 {
 }
 
 
+/*------------Create Recipe Page------------*/
+
+#create_recipe_icons {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 25px;
+    padding-right: 0px;
+}
+
+#create_recipe_input {
+    padding-right: 100px;
+    padding-left: 0px;
+}
+
+#ingredients, #preparation {
+    height: 10rem;
+    border: solid;
+    border-color: #9e9e9e;
+}
+
 /*------------Footer------------*/
 
 #page-footer {

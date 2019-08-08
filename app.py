@@ -138,6 +138,47 @@ def add_dislike(recipe_id):
     return redirect(url_for('view_recipe', recipe_id=recipe_id))
     
 #=======================================================================#
+
+@app.route('/add_recipe')
+def add_recipe():
+    
+    """Add/Create a recipe"""
+    
+    return render_template('add_recipe.html', 
+                            origins=mongo.db.origins.find(),
+                            time=mongo.db.time.find(),
+                            serving=mongo.db.serving.find(),
+                            difficulty=mongo.db.difficulty.find()
+                            )
+    
+#=======================================================================#
+
+@app.route('/submit_recipe', methods=['POST'])
+def submit_recipe():
+    
+    """Submit the new recipe to the database"""
+    
+    recipes = mongo.db.recipes
+    
+    recipes.insert_one({
+        'recipe_name':request.form['recipe_name'],
+        'recipe_origin':request.form['recipe_origin'],
+        'recipe_time':request.form['recipe_time'],
+        'recipe_serving':request.form['recipe_serving'],
+        'recipe_difficulty':request.form['recipe_difficulty'],
+        'recipe_image':request.form['recipe_image'],
+        'recipe_ingredients':request.form['recipe_ingredients'],
+        'recipe_preparation':request.form['recipe_preparation'],
+        'recipe_description': request.form['recipe_description'],
+        'recipe_views': 0,
+        'recipe_likes': 0,
+        'recipe_dislikes': 0,
+        'recipe_creator':session['username']
+    })
+    return redirect(url_for('index'))
+    
+    
+#=======================================================================#
     
 if __name__ == '__main__':
     
