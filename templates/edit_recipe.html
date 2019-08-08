@@ -1,15 +1,15 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="row">
-    <form action="{{ url_for('submit_recipe') }}" method="POST" class="col s12">
+    <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
         <!--Recipe Title-->
         <div class="row">
             <div id="create_recipe_icons" class="input-field col s1">
                 <i class="fas fa-utensils"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <input id="name" name="recipe_name" type="text" class="validate">
-                <label for="icon_prefix">Recipe Title</label>
+                <input id="name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
+                <label for="icon_prefix">Recipe Name</label>
             </div>
         </div>
         <!--Recipe Origin-->
@@ -19,9 +19,13 @@
             </div>
             <div id="create_recipe_input" class="input-field col s11">
                 <select id="origins" name="recipe_origin">
-                  <option value="" disabled selected>Country of Origin</option>
+                  <option value="" disabled selected>Recipe Origin</option>
                   {% for origin in origins %}
-                  <option value="{{origin.recipe_origin}}">{{origin.recipe_origin}}</option>
+                      {% if origin.recipe_origin == recipe.recipe_origin %}
+                      <option value="{{origin.recipe_origin}}" selected >{{origin.recipe_origin}}</option>
+                      {% else %}
+                       <option value="{{origin.recipe_origin}}">{{origin.recipe_origin}}</option>
+                    {% endif %}
                   {% endfor %}
                 </select>
             </div>
@@ -35,7 +39,11 @@
                 <select id="time" name="recipe_time">
                   <option value="" disabled selected>Preparation Time</option>
                   {% for t in time %}
-                  <option value="{{t.recipe_time}}">{{t.recipe_time}}</option>
+                      {% if t.recipe_time == recipe.recipe_time %}
+                      <option value="{{t.recipe_time}}" selected >{{t.recipe_time}}</option>
+                      {% else %}
+                       <option value="{{t.recipe_time}}">{{t.recipe_time}}</option>
+                    {% endif %}
                   {% endfor %}
                 </select>
             </div>
@@ -46,10 +54,14 @@
                 <i class="fas fa-user-friends"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <select id="serving" name="recipe_serving">
+                <select id="time" name="recipe_serving">
                   <option value="" disabled selected>No. of Servings</option>
                   {% for s in serving %}
-                  <option value="{{s.recipe_serving}}">{{s.recipe_serving}}</option>
+                      {% if s.recipe_serving == recipe.recipe_serving %}
+                      <option value="{{s.recipe_serving}}" selected >{{s.recipe_serving}}</option>
+                      {% else %}
+                       <option value="{{s.recipe_serving}}">{{s.recipe_serving}}</option>
+                    {% endif %}
                   {% endfor %}
                 </select>
             </div>
@@ -60,10 +72,14 @@
                 <i class="fas fa-medal"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <select id="difficulty" name="recipe_difficulty">
+                <select id="time" name="recipe_difficulty">
                   <option value="" disabled selected>Difficulty</option>
                   {% for d in difficulty %}
-                  <option value="{{d.recipe_difficulty}}">{{d.recipe_difficulty}}</option>
+                      {% if d.recipe_difficulty == recipe.recipe_difficulty %}
+                      <option value="{{d.recipe_difficulty}}" selected >{{d.recipe_difficulty}}</option>
+                      {% else %}
+                       <option value="{{d.recipe_difficulty}}">{{d.recipe_difficulty}}</option>
+                    {% endif %}
                   {% endfor %}
                 </select>
             </div>
@@ -74,7 +90,7 @@
                 <i class="fas fa-book-open"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <input id="decription" name="recipe_description" type="text" class="validate">
+                <input value="{{recipe.recipe_description}}" id="decription" name="recipe_description" type="text" class="validate">
                 <label for="icon_prefix">Recipe Description</label>
             </div>
         </div>
@@ -84,7 +100,7 @@
                 <i class="fas fa-image"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <input id="image" name="recipe_image" type="text" class="validate">
+                <input value="{{recipe.recipe_image}}" id="image" name="recipe_image" type="text" class="validate">
                 <label for="icon_prefix">Recipe Image (URL)</label>
             </div>
         </div>
@@ -94,7 +110,7 @@
                 <i class="fas fa-cheese"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <input id="ingredients" name="recipe_ingredients" type="text" class="validate">
+                <input value="{{recipe.recipe_ingredients}}" id="ingredients" name="recipe_ingredients" type="text" class="validate">
                 <label for="icon_prefix">Recipe Ingredients</label>
             </div>
         </div>
@@ -104,15 +120,15 @@
                 <i class="fas fa-tasks"></i>
             </div>
             <div id="create_recipe_input" class="input-field col s11">
-                <input id="preparation" name="recipe_preparation" type="text" class="validate">
+                <input value="{{recipe.recipe_preparation}}" id="preparation" name="recipe_preparation" type="text" class="validate">
                 <label for="icon_prefix">Recipe Preparation</label>
             </div>
         </div>
         <!--Submit Recipe-->
 
         <div class="row">
-            <a class="btn waves-effect waves-light" href="{{url_for('index')}}">Back</a>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Create
+            <a class="btn waves-effect waves-light" href="{{url_for('view_recipe', recipe_id=recipe._id)}}">Back</a>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Update
                 <i class="material-icons right"></i>
             </button>
         </div>

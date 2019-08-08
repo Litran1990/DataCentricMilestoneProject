@@ -177,6 +177,46 @@ def submit_recipe():
     })
     return redirect(url_for('index'))
     
+#=======================================================================#
+
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    
+    """Edit a recipe"""
+    
+    the_recipe=mongo.db.recipes.find_one({"_id":ObjectId(recipe_id)})
+    
+    return render_template('edit_recipe.html',
+                            recipe=the_recipe,  
+                            origins=mongo.db.origins.find(),
+                            time=mongo.db.time.find(),
+                            serving=mongo.db.serving.find(),
+                            difficulty=mongo.db.difficulty.find()
+                            )
+                            
+#=======================================================================#
+
+@app.route('/update_recipe/<recipe_id>', methods=['POST'])
+def update_recipe(recipe_id):
+    
+    """Update the recipe to the database"""
+    
+    recipes = mongo.db.recipes
+    
+    recipes.update({'_id':ObjectId(recipe_id)},
+    {
+        'recipe_name':request.form.get('recipe_name'),
+        'recipe_origin':request.form.get('recipe_origin'),
+        'recipe_time':request.form.get('recipe_time'),
+        'recipe_serving':request.form.get('recipe_serving'),
+        'recipe_difficulty':request.form.get('recipe_difficulty'),
+        'recipe_image':request.form.get('recipe_image'),
+        'recipe_ingredients':request.form.get('recipe_ingredients'),
+        'recipe_preparation': request.form.get('recipe_preparation'),
+        'recipe_description':request.form.get('recipe_description'),
+        'recipe_creator':session['username']
+    })
+    return redirect(url_for('index'))
     
 #=======================================================================#
     
