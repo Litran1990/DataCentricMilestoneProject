@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% block content %}
+
+<!---Welcome Banner--->
+<div id="opening_banner" class="row">
+    <div class="class col s12">
+        <h1>Find & Create the Most Delicious Recipes For You!</h1>
+        {% if 'username' in session %}
+        <h3>Welcome Back {{ session['username'] }}!</h3>
+        {% else %}
+        <h3>Welcome! Please <a class="links" href="{{ url_for('login') }}">Login</a> or <a class="links" href="{{ url_for('register') }}">Sign Up</a></h3>
+        {% endif %}
+    </div>
+</div>
+
+<!---Filtering Options--->
+<div class="row">
+    <form action="{{ url_for('filter_recipe') }}" method="GET" class="col s12">
+        <!--Recipe Origin-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-globe-americas"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="origins" name="recipe_origin">
+                  <option value="" disabled selected>Country of Origin</option>
+                  {% for origin in origins %}
+                  <option value="{{origin.recipe_origin}}">{{origin.recipe_origin}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Preparation Time-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="time" name="recipe_time">
+                  <option value="" disabled selected>Preparation Time</option>
+                  {% for t in time %}
+                  <option value="{{t.recipe_time}}">{{t.recipe_time}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Recipe Serving-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-user-friends"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="serving" name="recipe_serving">
+                  <option value="" disabled selected>No. of Servings</option>
+                  {% for s in serving %}
+                  <option value="{{s.recipe_serving}}">{{s.recipe_serving}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <!--Recipe Difficulty-->
+        <div class="row">
+            <div id="create_recipe_icons" class="input-field col s1">
+                <i class="fas fa-medal"></i>
+            </div>
+            <div id="create_recipe_input" class="input-field col s11">
+                <select id="difficulty" name="recipe_difficulty">
+                  <option value="" disabled selected>Difficulty</option>
+                  {% for d in difficulty %}
+                  <option value="{{d.recipe_difficulty}}">{{d.recipe_difficulty}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Find Recipe
+                <i class="material-icons right"></i>
+            </button>
+        </div>
+    </form>
+</div>    
+
+<!---Search Results--->
+<div class="row">
+    {% for recipe in recipes[:12] %}
+    <div class="col s6 m4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ recipe.recipe_image }}">
+                <span class="card-title">{{recipe.recipe_name}}</span>
+            </div>
+            <div class="card-content">
+                <p>{{recipe.recipe_description}}</p>
+            </div>
+            <div class="card-action">
+                <a href="#">Views {{recipe.recipe_views}}</a>
+                <a href="#">Likes {{recipe.recipe_likes}}</a>
+                <a href="#">Dislikes {{recipe.recipe_dislikes}}</a>
+                <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">View Recipe</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

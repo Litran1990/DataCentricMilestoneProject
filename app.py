@@ -63,8 +63,8 @@ def login():
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
         elif request.form['username'] != logged_user:
-            flash('User Does Not Exist!')
-        flash('Incorrect Password!')
+            flash('Incorrect Username')
+        flash('Incorrect Password')
     
     return render_template('login.html')
 
@@ -217,6 +217,52 @@ def update_recipe(recipe_id):
         'recipe_creator':session['username']
     })
     return redirect(url_for('index'))
+    
+#=======================================================================#
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    
+    """Delete the recipe from the database"""
+    
+    recipes = mongo.db.recipes
+    
+    recipes.remove({'_id':ObjectId(recipe_id)})
+    return redirect(url_for('index'))
+    
+#=======================================================================#
+
+@app.route("/filter", methods=["GET"])
+def filter_recipe():
+   
+    """Filter by difficulty level, origin, time, and serving"""
+    
+    recipes = mongo.db.recipes
+    criteria = {}
+
+    origins = request.form.get('recipe_origin')
+    if origins is not None:
+        criteria['recipe_origin'] = origins
+
+    time = request.form.get('recipe_time')
+    if time is not None:
+        criteria['recipe_time'] = time
+
+    difficulty = request.form.get('recipe_difficulty')
+    if difficulty is not None:
+        criteria['recipe_difficulty'] = difficulty
+        
+    serving = request.form.get('recipe_serving')
+    if serving is not None:
+        criteria['recipe_serving'] = serving
+
+    results = recipes.find({'$and': [criteria]})
+
+    return render_template("filter_recipe.html", recipes=results,
+                            origins=mongo.db.origins.find(),
+                            time=mongo.db.time.find(),
+                            serving=mongo.db.serving.find(),
+                            difficulty=mongo.db.difficulty.find())
     
 #=======================================================================#
     
