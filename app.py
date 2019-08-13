@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'mange_app'
+app.config["MONGO_DBNAME"] = 'oui-chef'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config['SECRET_KEY'] = 'the random string'
 
@@ -204,7 +204,7 @@ def update_recipe(recipe_id):
     recipes = mongo.db.recipes
     
     recipes.update({'_id':ObjectId(recipe_id)},
-    {
+        {"$set":{
         'recipe_name':request.form.get('recipe_name'),
         'recipe_origin':request.form.get('recipe_origin'),
         'recipe_time':request.form.get('recipe_time'),
@@ -215,7 +215,7 @@ def update_recipe(recipe_id):
         'recipe_preparation': request.form.get('recipe_preparation'),
         'recipe_description':request.form.get('recipe_description'),
         'recipe_creator':session['username']
-    })
+    }})
     return redirect(url_for('index'))
     
 #=======================================================================#
@@ -238,31 +238,22 @@ def filter_recipe():
     """Filter by difficulty level, origin, time, and serving"""
     
     recipes = mongo.db.recipes
-    criteria = {}
+    
+    criteria = []
 
-    origins = request.form.get('recipe_origin')
-    if origins is not None:
-        criteria['recipe_origin'] = origins
-
-    time = request.form.get('recipe_time')
-    if time is not None:
-        criteria['recipe_time'] = time
-
-    difficulty = request.form.get('recipe_difficulty')
-    if difficulty is not None:
-        criteria['recipe_difficulty'] = difficulty
+    dict1 = {'recipe_origin': request.form.get('recipe_origin')}
+    criteria.append(dict1)
         
-    serving = request.form.get('recipe_serving')
-    if serving is not None:
-        criteria['recipe_serving'] = serving
+    dict2 = {'difficulty': request.form.get('recipe_difficulty')}
+    criteria.append(dict2)
+    
+    results = recipes.find({ '$and': [  {'recipe_origin': 'Brazilian'}, {'recipe_difficulty': 'Easy'}   ]   })
 
-    results = recipes.find({'$and': [criteria]})
-
-    return render_template("filter_recipe.html", recipes=results,
+    return render_template("filter_recipe.html", 
+                            recipes=results,
                             origins=mongo.db.origins.find(),
-                            time=mongo.db.time.find(),
-                            serving=mongo.db.serving.find(),
-                            difficulty=mongo.db.difficulty.find())
+                            difficulty=mongo.db.difficulty.find()
+                           )
     
 #=======================================================================#
     
