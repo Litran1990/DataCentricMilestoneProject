@@ -232,28 +232,53 @@ def delete_recipe(recipe_id):
     
 #=======================================================================#
 
-@app.route("/filter", methods=["GET"])
+@app.route("/filter_recipe", methods=["GET", "POST"])
 def filter_recipe():
-   
-    """Filter by difficulty level, origin, time, and serving"""
+    """
+    Filter by difficulty level, origin, time, and serving
+    """
     
-    recipes = mongo.db.recipes
+    recipes = mongo.db.recipes # Set our collection
+    criteria = [] # An array for use in the mongo query
     
-    criteria = []
-
-    dict1 = {'recipe_origin': request.form.get('recipe_origin')}
-    criteria.append(dict1)
+    if request.method == "POST":
+        origins = request.form.get('recipe_origin')
+        if origins is not None:
+            dict1 = {
+                    'recipe_origin': origins
+                    }
+            criteria.append(dict1)
+    
+        #time = request.form.get('recipe_time')
+        #if time is not None:
+            #dict2 = {
+                    #'recipe_time': time
+                    #}
+            #criteria.append(dict2)
+    
+        difficulty = request.form.get('recipe_difficulty')
+        if difficulty is not None:
+            dict3 = {
+                    'recipe_difficulty': difficulty
+                }
+            criteria.append(dict3)
+            
+        #serving = request.form.get('recipe_serving')
+        #if serving is not None:
+            #dict4 = {
+                    #'recipe_serving' : serving
+                #}
+            #criteria.append(dict4)
         
-    dict2 = {'difficulty': request.form.get('recipe_difficulty')}
-    criteria.append(dict2)
-    
-    results = recipes.find({ '$and': [  {'recipe_origin': 'Brazilian'}, {'recipe_difficulty': 'Easy'}   ]   })
+        results = recipes.find({'$and': criteria })
 
-    return render_template("filter_recipe.html", 
-                            recipes=results,
-                            origins=mongo.db.origins.find(),
-                            difficulty=mongo.db.difficulty.find()
-                           )
+        return render_template("filter_recipe.html", results=results)
+        
+        print(criteria)
+    
+    return render_template("filter_recipe.html",
+                        origins=mongo.db.origins.find(),
+                        difficulty=mongo.db.difficulty.find())
     
 #=======================================================================#
     
