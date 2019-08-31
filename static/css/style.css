@@ -142,11 +142,22 @@ h3 {
     padding-left: 0px;
 }
 
-#ingredients, #preparation {
+#ingredients,
+#preparation {
     height: 10rem;
     border: solid;
     border-color: #9e9e9e;
 }
+
+
+/*------------Edit Recipe Page------------*/
+
+#create_recipe_input img {
+    height: 460px;
+    width: 440px;
+    border-radius: 2.5%;
+}
+
 
 /*------------Footer------------*/
 

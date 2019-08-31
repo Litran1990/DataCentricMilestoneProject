@@ -43,6 +43,7 @@
 
 
 <!---Search Results--->
+{% if results %}
 <div class="row">
     {% for recipe in results %}
     <div class="col s6 m4">
@@ -64,5 +65,10 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="col s6 m4">
+    <h1>No Results Found!</h1>
+</div>
+{% endif %}
 
 {% endblock %}
