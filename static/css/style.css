@@ -39,6 +39,17 @@ nav .brand-logo {
     background-color: #404040;
 }
 
+#suggestions_title {
+    font-size: 32px;
+    color: #404040;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 55px;
+    margin-top: 55px;
+    margin-bottom: -10px;
+    height: 40px;
+}
+
 .carousel.carousel-slider .carousel-item {
     width: 100%;
     border-radius: 10px;
@@ -66,9 +77,6 @@ h3 {
     text-align: center;
 }
 
-
-/*------------Index Page------------*/
-
 .btn,
 .btn-large {
     text-decoration: none;
@@ -88,6 +96,11 @@ h3 {
     margin-top: 50%;
 }
 
+#card_spacing {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
 .row {
     margin-left: 20px;
     margin-right: 20px;
@@ -96,29 +109,46 @@ h3 {
 }
 
 .card {
-    height: 80vh;
+    height: 65vh;
     display: block;
 }
 
 .card .card-action {
     text-align: center;
+    border-radius: 2px;
+}
+
+.card .card-content {
+    height: 165px;
+    padding-top: 30px;
+}
+
+.card .card-content .card-title {
+    margin-bottom: 20px;
+    font-weight: 400;
 }
 
 .card .card-content p {
-    text-align: center;
+    text-align: left;
 
 }
 
+.card .card-image {
+    height: 290px;
+}
+
 .card .card-image img {
-    height: 460px;
-    width: 440px;
+    height: inherit;
+    width: 100%;
     border-radius: 2.5%;
     display: inline-block;
     margin-top: 15px;
 }
 
 .card .card-image .card-title {
-    padding-left: 145px;
+    padding-left: 40px;
+    color: #ffab40;
+    font-weight: bold;
 }
 
 .comment_section {
@@ -167,7 +197,7 @@ h3 {
     padding-right: 50px;
     padding-bottom: 30px;
     padding-top: 30px;
-    margin: 0px;
+    margin: 30px 0px 0px 0px;
 }
 
 #page-footer .row {
