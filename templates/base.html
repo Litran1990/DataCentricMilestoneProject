@@ -2,6 +2,11 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Oui Chef!</title>
+    
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
@@ -18,7 +23,7 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="{{url_for('index')}}" class="brand-logo">Oui Chef!</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ul id="nav-mobile" class="right">
                     <li><a href="{{url_for('index')}}">Home</a></li>
                     {% if 'username' in session %}
                     <li><a href="{{url_for('filter_recipe')}}">Find Recipe</a></li>

@@ -55,6 +55,10 @@ nav .brand-logo {
     border-radius: 10px;
 }
 
+.card .card-action {
+    padding: 24px 45px;
+}
+
 .links {
     color: #404040;
     font-weight: bold;
@@ -97,8 +101,8 @@ h3 {
 }
 
 #card_spacing {
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .row {
@@ -109,22 +113,30 @@ h3 {
 }
 
 .card {
-    height: 65vh;
+    height: 74vh;
     display: block;
 }
 
-.card .card-action {
+.card #view_recipe_icons {
     text-align: center;
     border-radius: 2px;
+    border-top: none;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.card #view_recipe_icons a {
+    margin-right: 57px;
 }
 
 .card .card-content {
-    height: 165px;
+    height: 228px;
     padding-top: 30px;
 }
 
 .card .card-content .card-title {
     margin-bottom: 20px;
+    margin-top: 25px;
     font-weight: 400;
 }
 
@@ -154,10 +166,19 @@ h3 {
 .comment_section {
     color: #404040;
     margin: 0px;
+    padding-top: 20px;
+}
+
+.card .card-action i {
+    color: #ffab40;
+    margin-right: 24px;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+    text-transform: uppercase;
 }
 
 
-/*------------Create Recipe Page------------*/
+/*------------Add Recipe Page------------*/
 
 #create_recipe_icons {
     font-size: 24px;
@@ -230,4 +251,109 @@ h3 {
     font-size: 24px;
     font-weight: 400;
     color: #fff;
+}
+
+
+/*-----------------------------------------Responsiveness-----------------------------------------*/
+
+/*------------Mobile media------------*/
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+
+    /*--------------Index Page------------*/
+    .card {
+        height: 28vh;
+    }
+
+    #opening_banner {
+        background-image: linear-gradient(to bottom right, rgba(76, 76, 76, 0.3), rgba(224, 224, 224, 0.3)), url(../images/index.jpg);
+        border-radius: 10px;
+        font-weight: bold;
+        background-size: cover;
+        height: 18vh;
+        margin-left: 40px;
+        margin-top: 25px;
+        margin-right: 40px;
+        padding-top: 63px;
+    }
+
+    /*--------------View Recipe Page------------*/
+    nav .brand-logo {
+        left: 15%;
+    }
+
+    #leave_comment {
+        margin-top: 65%;
+    }
+
+    .card #view_recipe_icons {
+        margin-top: 0px;
+    }
+
+}
+
+
+/*------------Tablet media------------*/
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+
+    /*--------------Index Page------------*/
+    nav .brand-logo {
+        left: 10%;
+    }
+
+    nav ul a:hover {
+        color: #58C726;
+    }
+
+    .card {
+        height: 43vh;
+        display: block;
+    }
+
+    .card .card-content {
+        height: 200px;
+    }
+
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+        margin-right: 20px;
+        font-size: 12px;
+    }
+
+    #view_recipe {
+        height: 49vh;
+        display: block;
+    }
+
+    .card .card-action {
+        border-top: none;
+        padding: 24px 25px;
+    }
+
+    /*--------------View Recipe Page------------*/
+    #leave_comment {
+        margin-top: 75%;
+    }
+
+}
+
+
+/*------------Laptop media------------*/
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+
+    /*--------------Index Page------------*/
+    .card {
+        height: 75vh;
+    }
+
+    /*--------------View Recipe Page------------*/
+    #view_recipe {
+        height: 78vh;
+    }
+
+    #leave_comment {
+        margin-top: 25%;
+    }
+
 }

@@ -5,31 +5,31 @@
 <div class="row">
   <!---Recipe Cards--->
   <div class="col s6 m6">
-    <div class="card">
-      <div class="center card-image">
-        <img src="{{recipe.recipe_image}}"></img>
-        <span class="card-title">{{recipe.recipe_name}}</span>
+    <div id='view_recipe' class="card">
+      <div class="card-image">
+        <img src="{{ recipe.recipe_image }}">
       </div>
       <div class="card-content">
+        <span class="card-title">{{recipe.recipe_name}}</span>
         <p>{{recipe.recipe_description}}</p>
       </div>
 
       <!-- REQUIRE SIGN IN TO LIKE/DISLIKE -->
       {% if not 'username' in session %}
       <div class="card-action">
-        <a href="#">Views {{recipe.recipe_views}}</a>
-        <a href="#">Likes {{recipe.recipe_likes}}</a>
-        <a href="#">Dislikes {{recipe.recipe_dislikes}}</a>
+        <a href="#"><i class="fas fa-eye"></i> {{recipe.recipe_views}}</a>
+        <a href="#"><i class="fas fa-thumbs-up"></i> {{recipe.recipe_likes}}</a>
+        <a href="#"><i class="fas fa-thumbs-down"></i> {{recipe.recipe_dislikes}}</a>
       </div>
       <div class="card-action">
         <p>You must be logged in to like/dislike a recipe.<a href="{{ url_for('login') }}"> Sign In </a></p>
       </div>
 
       {% else %}
-      <div class="card-action">
-        <a href="#">Views {{recipe.recipe_views}}</a>
-        <a id="add_like" href="{{ url_for('add_like', recipe_id=recipe._id) }}">Likes {{recipe.recipe_likes}}</a>
-        <a id="add_dislike" href="{{ url_for('add_dislike', recipe_id=recipe._id) }}">Dislikes {{recipe.recipe_dislikes}}</a>
+      <div id="view_recipe_icons" class="card-action">
+        <a href="#"><i class="fas fa-eye"></i> {{recipe.recipe_views}}</a>
+        <a href="{{ url_for('add_like', recipe_id=recipe._id) }}"><i class="fas fa-thumbs-up"></i> {{recipe.recipe_likes}}</a>
+        <a href="{{ url_for('add_dislike', recipe_id=recipe._id) }}"><i class="fas fa-thumbs-down"></i> {{recipe.recipe_dislikes}}</a>
       </div>
       {% endif %}
     </div>
@@ -37,7 +37,7 @@
 
   <!---Recipe Comments--->
   <div class="col s6 m6">
-    <div class="card">
+    <div id='view_recipe' class="card">
       <h3 class="comment_section">Comments</h3>
       {% if recipe.recipe_comments %}
 

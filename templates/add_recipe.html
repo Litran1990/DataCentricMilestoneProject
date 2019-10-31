@@ -4,20 +4,20 @@
     <form action="{{ url_for('submit_recipe') }}" method="POST" class="col s12">
         <!--Recipe Title-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-utensils"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
-                <input id="name" name="recipe_name" type="text" class="validate">
-                <label for="icon_prefix">Recipe Title</label>
+            <div class="create_recipe_input input-field col s11">
+                <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                <label for="recipe_name">Recipe Title</label>
             </div>
         </div>
         <!--Recipe Origin-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-globe-americas"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="origins" name="recipe_origin">
                   <option value="" disabled selected>Country of Origin</option>
                   {% for origin in origins %}
@@ -28,10 +28,10 @@
         </div>
         <!--Preparation Time-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-clock"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="time" name="recipe_time">
                   <option value="" disabled selected>Preparation Time</option>
                   {% for t in time %}
@@ -42,10 +42,10 @@
         </div>
         <!--Recipe Serving-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-user-friends"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="serving" name="recipe_serving">
                   <option value="" disabled selected>No. of Servings</option>
                   {% for s in serving %}
@@ -56,10 +56,10 @@
         </div>
         <!--Recipe Difficulty-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-medal"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="difficulty" name="recipe_difficulty">
                   <option value="" disabled selected>Difficulty</option>
                   {% for d in difficulty %}
@@ -70,42 +70,42 @@
         </div>
         <!--Recipe Description-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-book-open"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
-                <input id="decription" name="recipe_description" type="text" class="validate">
-                <label for="icon_prefix">Recipe Description</label>
+            <div class="create_recipe_input input-field col s11">
+                <input id="recipe_description" name="recipe_description" type="text" class="validate">
+                <label for="recipe_description">Recipe Description</label>
             </div>
         </div>
         <!--Recipe Image-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-image"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
-                <input id="image" name="recipe_image" type="text" class="validate">
-                <label for="icon_prefix">Recipe Image (URL)</label>
+            <div class="create_recipe_input input-field col s11">
+                <input id="recipe_image" name="recipe_image" type="text" class="validate">
+                <label for="recipe_image">Recipe Image (URL)</label>
             </div>
         </div>
         <!--Recipe Ingredients-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-cheese"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
-                <input id="ingredients" name="recipe_ingredients" type="text" class="validate">
-                <label for="icon_prefix">Recipe Ingredients</label>
+            <div class="create_recipe_input input-field col s11">
+                <input id="recipe_ingredients" name="recipe_ingredients" type="text" class="validate">
+                <label for="recipe_ingredients">Recipe Ingredients</label>
             </div>
         </div>
         <!--Recipe Preparation-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-tasks"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
-                <input id="preparation" name="recipe_preparation" type="text" class="validate">
-                <label for="icon_prefix">Recipe Preparation</label>
+            <div class="create_recipe_input input-field col s11">
+                <input id="recipe_preparation" name="recipe_preparation" type="text" class="validate">
+                <label for="recipe_preparation">Recipe Preparation</label>
             </div>
         </div>
         <!--Submit Recipe-->

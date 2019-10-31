@@ -23,7 +23,7 @@ def index():
     
     recipes = mongo.db.recipes.find().sort('recipe_name', -1)
     
-    cards = mongo.db.recipes.find().sort('recipe_likes', -1)
+    cards = mongo.db.recipes.find().sort('recipe_likes', 1)
     
     return render_template("index.html", recipes=recipes, cards=cards)
 
@@ -249,12 +249,12 @@ def filter_recipe():
                     }
             criteria.append(dict1)
     
-        #time = request.form.get('recipe_time')
-        #if time is not None:
-            #dict2 = {
-                    #'recipe_time': time
-                    #}
-            #criteria.append(dict2)
+        time = request.form.get('recipe_time')
+        if time is not None:
+            dict2 = {
+                    'recipe_time': time
+                    }
+            criteria.append(dict2)
     
         difficulty = request.form.get('recipe_difficulty')
         if difficulty is not None:
@@ -263,16 +263,19 @@ def filter_recipe():
                 }
             criteria.append(dict3)
             
-        #serving = request.form.get('recipe_serving')
-        #if serving is not None:
-            #dict4 = {
-                    #'recipe_serving' : serving
-                #}
-            #criteria.append(dict4)
+        serving = request.form.get('recipe_serving')
+        if serving is not None:
+            dict4 = {
+                    'recipe_serving' : serving
+                }
+            criteria.append(dict4)
         
         results = recipes.find({'$and': criteria })
 
-        return render_template("filter_recipe.html", results=results)
+        return render_template("filter_recipe.html", 
+                            origins=mongo.db.origins.find(),
+                            difficulty=mongo.db.difficulty.find(), 
+                            results=results)
         
         print(criteria)
     
@@ -289,3 +292,4 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)
+
