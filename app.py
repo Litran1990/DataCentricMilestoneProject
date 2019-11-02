@@ -9,11 +9,11 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'oui-chef'
+app.config["MONGO_DBNAME"] = 'mange_app'
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
-app.config['SECRET_KEY'] = 'the random string'
 
 mongo = PyMongo(app)
+
 
 
 """Function which displays the recipes"""
