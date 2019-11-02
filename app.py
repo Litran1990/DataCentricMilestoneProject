@@ -9,8 +9,9 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'mange_app'
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["MONGO_DBNAME"] = "mange_app"
+app.config["MONGO_URI"] = "mongodb+srv://Litran1990:Indaiatuba1999@myfirstcluster-fu8x1.mongodb.net/mange_app?retryWrites=true&w=majority"
+"""app.config["MONGO_URI"] = os.getenv("MONGO_URI")"""
 
 mongo = PyMongo(app)
 
