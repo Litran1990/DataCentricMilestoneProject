@@ -180,7 +180,7 @@ h3 {
 
 /*------------Add Recipe Page------------*/
 
-#create_recipe_icons {
+.create_recipe_icons {
     font-size: 24px;
     font-weight: 400;
     text-align: center;
@@ -188,7 +188,7 @@ h3 {
     padding-right: 0px;
 }
 
-#create_recipe_input {
+.create_recipe_input {
     padding-right: 100px;
     padding-left: 0px;
 }
@@ -203,8 +203,8 @@ h3 {
 
 /*------------Edit Recipe Page------------*/
 
-#create_recipe_input img {
-    height: 460px;
+#recipe_pic img{
+    height: 400px;
     width: 440px;
     border-radius: 2.5%;
 }
@@ -320,7 +320,7 @@ h3 {
         font-size: 12px;
     }
 
-    #view_recipe {
+    .view_recipe {
         height: 49vh;
         display: block;
     }
@@ -331,7 +331,7 @@ h3 {
     }
 
     /*--------------View Recipe Page------------*/
-    #leave_comment {
+    .leave_comment {
         margin-top: 75%;
     }
 

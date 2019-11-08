@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 
-<!---Filtering Options--->
+<!--Filtering Options-->
 <div class="row">
     <form action="{{ url_for('filter_recipe') }}" method="POST" class="col s12">
         <!--Recipe Origin-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-globe-americas"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="origins" name="recipe_origin">
                   <option value="" disabled selected>Country of Origin</option>
                   {% for origin in origins %}
@@ -19,10 +19,10 @@
         </div>
         <!--Recipe Difficulty-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-medal"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="difficulty" name="recipe_difficulty">
                   <option value="" disabled selected>Difficulty</option>
                   {% for d in difficulty %}
@@ -33,10 +33,10 @@
         </div>
         <!--Preparation Time-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-clock"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="time" name="recipe_time">
                   <option value="" disabled selected>Preparation Time</option>
                   {% for t in time %}
@@ -47,10 +47,10 @@
         </div>
         <!--Recipe Serving-->
         <div class="row">
-            <div id="create_recipe_icons" class="input-field col s1">
+            <div class="create_recipe_icons input-field col s1">
                 <i class="fas fa-user-friends"></i>
             </div>
-            <div id="create_recipe_input" class="input-field col s11">
+            <div class="create_recipe_input input-field col s11">
                 <select id="serving" name="recipe_serving">
                   <option value="" disabled selected>No. of Servings</option>
                   {% for s in serving %}
@@ -70,7 +70,7 @@
 
 
 
-<!---Search Results--->
+<!--Search Results-->
 {% if results %}
 <div class="row">
     {% for recipe in results %}
