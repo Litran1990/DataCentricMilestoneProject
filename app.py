@@ -274,14 +274,18 @@ def filter_recipe():
 
         return render_template("filter_recipe.html", 
                             origins=mongo.db.origins.find(),
-                            difficulty=mongo.db.difficulty.find(), 
+                            time=mongo.db.time.find(),
+                            difficulty=mongo.db.difficulty.find(),
+                            serving=mongo.db.serving.find(),
                             results=results)
         
         print(criteria)
     
     return render_template("filter_recipe.html",
                         origins=mongo.db.origins.find(),
-                        difficulty=mongo.db.difficulty.find())
+                        time=mongo.db.time.find(),
+                        difficulty=mongo.db.difficulty.find(),
+                        serving=mongo.db.serving.find())
     
 #=======================================================================#
     
