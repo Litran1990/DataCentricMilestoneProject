@@ -4,7 +4,7 @@
 
 <img src="static/images/desktop-view.gif" width="300">
 
-This application (app) consists of a website where users can find recipes from the best cuisines in the world with a step-by-step decription on how make them at home.
+This [application](https://ouichef.herokuapp.com/) (app) consists of a website where users can find recipes from the best cuisines in the world with a step-by-step decription on how make them at home.
 
 #### Functionality
 The application consists of 4 main sections providing the user with the possibility of:
@@ -31,7 +31,7 @@ The application is designed to users who often or acasssionaly buy look for a re
 
 #### Important Note
 
-- It is important to emphasize that the application heavily relies on the users when it comes to the expansion of its database. Its main goal is to create a common and friendly place where people can share their recipes and learn about different cuisines.
+- It is important to emphasize that the application heavily relies on the user when it comes to the expansion of its database. Its main goal is to create a common and friendly place where people can share their recipes and learn about different cuisines.
 
 #### Colour Scheme
 
@@ -79,7 +79,7 @@ As the applications consists of a MPA, I applied an easy navigation where the us
 #### Features Left to Implement
 
 - I wish to implement a profile page for each user. In this way, users can share their cooking preferences in a detailed manner.
-- A feature which I wil soon implement is the possibility for user to upload videos when cooking a recipe.
+- A feature which I wil soon implement is the possibility for users to upload videos when cooking a recipe.
 - The possibility to sign up using a facebook or gmail is also a feature which will be implement in the application.
 
 ## Syntax Testing
@@ -92,21 +92,30 @@ Resources & Tools Used for Testing
 #### CSS
 -[W3 CSS Validator](https://jigsaw.w3.org/css-validator/)
 
-#### Devices Tested
+#### Responsiveness
 
 - Responsive design has been applied to all kinds of devices including small, medium, and large phones as well as tablets, laptop, and desktop views. 
 
 #### Testing Criteria
 
-- In this session, testing user interface was done by running multiple combinations using all four filtering types aiming to have the expected outcome. One example of criteria set is shown below:
+- a) In this session, testing user interface was done by running multiple combinations when searching for a recipe using all four filtering types aiming to have the expected outcome. One example of criteria set is shown below:
     1. Country of Origin: Brazilian
-    2. Variety: Bordeaux Style Red Blend
-    3. Points: Excellent Above 95
-    4. Price: Above $100
+    2. Difficulty: Medium
+    3. Cooking Time: Very Long (More than 4hrs)
+    4. Servings: More than 6 people
+
+- b) Here the idea was to test the Sign In and Sign Up funtions:
+    1. Country of Origin: Brazilian
+    2. Difficulty: Medium
+    3. Cooking Time: Very Long (More than 4hrs)
+    4. Servings: More than 6 people
 
 #### Testing Outcome
 
-- The results came out as expected showing all titles corresponding to the criteria selected. 
+- a) As expected the result came out as the recipe "Feijoada" matching all searching criteria highlighted above.
+
+<img src="static/images/test_search.png">
+
 - All external links in the header section worked properly.
 - All external links in the footer section worked as expected.
 - In the suggestion section, all wine cards successfully redirected the user to a new tab and third-party website where the titles can be purchased.

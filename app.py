@@ -39,7 +39,7 @@ def register():
         current_user = users.find_one({'username': request.form['username']})
         
         if current_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            hashpass = bcrypt.hashpw(request.form['pass'], bcrypt.gensalt())
             users.insert({'username' : request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
@@ -59,7 +59,7 @@ def login():
         logged_user = users.find_one({'username': request.form['username']})
         
         if logged_user:
-            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), logged_user['password'].encode('utf-8')) == logged_user['password']:
+            if bcrypt.hashpw(request.form['pass'], logged_user['password']) == logged_user['password']:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
         elif request.form['username'] != logged_user:
