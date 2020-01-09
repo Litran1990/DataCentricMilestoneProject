@@ -2,7 +2,7 @@
 
 ## About
 
-<img src="static/images/desktop-view.gif" width="300">
+<img src="static/images/home.png">
 
 This [application](https://ouichef.herokuapp.com/) (app) consists of a website where users can find recipes from the best cuisines in the world with a step-by-step decription on how make them at home.
 
@@ -15,11 +15,7 @@ The application consists of 4 main sections providing the user with the possibil
 
 #### Goal
 
-The application is designed to users who often or acasssionaly buy look for a recipe based on his needs and preferences such as recipe origin, skill level, preparation time and serving size.
-
-#### Images
-
-<img src="static/images/desktop-view.gif" width="300">
+The application is designed to users who often or ocasssionaly look for a recipe based on his needs and preferences such as recipe origin, skill level, preparation time and serving size.
 
 ## UX
 
@@ -69,7 +65,7 @@ The application is designed to users who often or acasssionaly buy look for a re
 
 #### Existing Features
 
-As the applications consists of a MPA, I applied an easy navigation where the user can clearly see where to create, search, or look for a recipe:
+As the applications consists of a MPA, I applied an easy navigation where the user can clearly see where to create, edit, search, or look for a recipe:
 
 - Find Recipe: In the Find Recipe section, users can select and filter the recipes by country of origin, difficulty, preparation time. and serving size. In case he/she is not satisfied with the filtering chosen, they can reset the selected criteria in order to fit thie needs. 
 - Create Recipe: In the Create Recipe section the user has the possibility to create and update existing recipes.
@@ -105,10 +101,14 @@ Resources & Tools Used for Testing
     4. Servings: More than 6 people
 
 - b) Here the idea was to test the Sign In and Sign Up funtions:
-    1. Country of Origin: Brazilian
-    2. Difficulty: Medium
-    3. Cooking Time: Very Long (More than 4hrs)
-    4. Servings: More than 6 people
+    1. Username: Testing
+    2. Password: Test123
+
+- c) In this session, the goal was to test the like, dislike and comment features for a recipe with no likes, dislikes or posted comments.
+
+- d) The fourth test was designed to test the all CRUD possibilities for a new/existing recipe.
+
+- d) The final test aimed to test all external links in the application.
 
 #### Testing Outcome
 
@@ -116,31 +116,44 @@ Resources & Tools Used for Testing
 
 <img src="static/images/test_search.png">
 
-- All external links in the header section worked properly.
-- All external links in the footer section worked as expected.
-- In the suggestion section, all wine cards successfully redirected the user to a new tab and third-party website where the titles can be purchased.
+- b) User 'Testing' was successfully registered and able to login and logout afterwards.
+
+<img src="static/images/test_signup.png">
+
+- c) The like, dislike and comment features were successfully deployed as we can see in the image below:
+
+<img src="static/images/test_like.png">
+
+- d) All CRUD operations passed the test when creating, reading, updating and deleting the recipe 'Best-Ever Grilled Cheese':
+
+<img src="static/images/test_crud.png">
+
+<img src="static/images/test_crud2.png">
+
+- e) All external links in the footer section worked as expected.
+
 
 #### Issues During Testing Sessions
 
-- The data had to refined multiple times due to a recurring error: Error: Invalid value for attribute transform="translate(NaN,NaN)"
-- The error was due to blank values and special characters present in the dataset
+- The features like and dislike can be done multiple times by the same user. Therefore, this feature will be reworked which will unable such scenario.
+- The view count presents a similar behavior as for the two features mentioned above. The goal for such feature is to register a single view count for each user.
 
 ## Deployment
 
-This website has been hosted on GitHub pages, and it is deployed directly from the master branch. Therefore, once a new commit has been done the changes will automatically take effect on the master branch. 
+This website is hosted on Heroku, and it is deployed automatically from its mater branch on GitHub. Therefore, once a new commit has been done the changes will automatically take effect on the live application. 
 
-Additionally, if you wish to run the code locally, you can clone this repository directly into the editor of your choice by pasting `git clone https://github.com/Litran1990/InteractiveFrontEndMilestoneProject` into your terminal. In order to cut ties with this GitHub repository, type `git remote rm origin` into the terminal.
+Additionally, if you wish to run the code locally, you can clone this repository directly into the editor of your choice by pasting `git clone https://github.com/Litran1990/DataCentricMilestoneProject` into your terminal. In order to cut ties with this GitHub repository, type `git remote rm origin` into the terminal.
 
 
 ## Credits
 
 #### Dataset
-- The data used for this project was obtained from [Kaggle](https://www.kaggle.com/zynicide/wine-reviews)
+- The recipes used for this project were obtained from [bonapppetit](https://www.bonappetit.com/)
 
 #### Media
-- The photos used in this project were obtained from Google Images.
+- The photos used in this project were obtained from Bing Images.
 
 #### Acknowledgements
 
-- I received inspiration for this project from Code Institute's Interactive Front End - Mini Project.
+- I received inspiration for this project from Code Institute's Data Centric Module - Mini Project.
     
