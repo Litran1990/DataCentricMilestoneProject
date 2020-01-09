@@ -6,6 +6,9 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo
 import bcrypt
 from bson.objectid import ObjectId
+from os import path
+if path.exists("env.py"):
+    import env
 
 app = Flask(__name__)
 
@@ -39,7 +42,7 @@ def register():
         current_user = users.find_one({'username': request.form['username']})
         
         if current_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'], bcrypt.gensalt())
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
             users.insert({'username' : request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
@@ -59,7 +62,7 @@ def login():
         logged_user = users.find_one({'username': request.form['username']})
         
         if logged_user:
-            if bcrypt.hashpw(request.form['pass'], logged_user['password']) == logged_user['password']:
+            if bcrypt.hashpw(request.form['pass'].encode('utf-8'), logged_user['password']) == logged_user['password']:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
         elif request.form['username'] != logged_user:
@@ -278,8 +281,6 @@ def filter_recipe():
                             difficulty=mongo.db.difficulty.find(),
                             serving=mongo.db.serving.find(),
                             results=results)
-        
-        print(criteria)
     
     return render_template("filter_recipe.html",
                         origins=mongo.db.origins.find(),
@@ -294,6 +295,6 @@ if __name__ == '__main__':
     """Set up our IP address and our port number so that Cloud9 knows how to run and where to run our application"""
     
     app.run(host=os.environ.get('IP'),
-        port=int(os.environ.get('PORT')),
+        port=int(os.environ.get('PORT', '5000')),
         debug=True)
 
